@@ -211,7 +211,7 @@ static long hello_drv_ioctl(struct file * files, unsigned int cmd, unsigned long
 
     switch(cmd)
     {
-        case HELLO_WORLD_R:
+        case HELLO_WORLD_TEST:
             copy_to_user(ubuf, "good bye", 8);
             l32Ret = 0;
 
@@ -219,7 +219,7 @@ static long hello_drv_ioctl(struct file * files, unsigned int cmd, unsigned long
 
         case HELLO_WORLD_WR: {
                 struct helloWorldMsg_Read_Write msg_wr;
-                if(argSize != sizeof(helloWorldMsg_Read_Write_t))
+                if(argSize != sizeof(struct helloWorldMsg_Read_Write))
                 {
                     printk(KERN_INFO "procInfo=%d param error\n", proc->pid);
                     l32Ret = -1;
